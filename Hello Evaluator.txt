@@ -1,0 +1,9 @@
+Hello Evaluator,
+
+My name is Ravita Prajapati, and I am pleased to inform you that I have successfully completed my assessment for the Backend Developer role.
+
+For data transactions, I have utilized a MySQL database. Enclosed with this submission, you will find a SQL file containing a backup of the database. Please import this database into MySQL Workbench on your system to thoroughly test each API.
+
+Additionally, you can review more of my development work on my GitHub account: https://github.com/RavitaP12345.
+
+Thank you for your time and consideration.

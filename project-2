@@ -1,0 +1,93 @@
+Implement REST APIs to perform filter and sort operations on a collection of Txn.
+ 
+Here is an example of a User JSON object:
+[
+    {
+      "userId": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@xyz.com",
+      "phone": "9812346734"
+    },
+    {
+      "userId": 2,
+      "firstName": "James",
+      "lastName": "Bond",
+      "email": "james@xyz.com",
+      "phone": "9876456734"
+    }
+]
+
+Here is an example of a Bank JSON object:
+[
+    {
+      "userId": 1,
+      "bankName": "SBI",
+      "bankIfsc": "SBIN000123",
+      "accountNumber": "250000098325"
+    },
+    {
+      "userId": 2,
+      "bankName": "ICICI",
+      "bankIfsc": "ICI0000123",
+      "accountNumber": "540002567821"
+    }
+]
+
+Here is an example of a Txn JSON object:
+[
+    {
+      "userId": 1,
+      "txnId": "74001755",
+      "customerName": "John",
+      "service": "UPI",
+      "amount": 3548,
+      "gst": 0.18,
+      "commission": 10
+    },
+    {
+      "userId": 2,
+      "txnId": "74002423",
+      "customerName": "James",
+      "service": "UPI",
+      "amount": 758,
+      "gst": 0.36,
+      "commission": 20
+    }
+]
+ 
+You are provided with the implementation of the models required for all the APIs.
+Based on JSON object create the tables where
+	User_tbl, User_bank_tbl and User_txn_tbl
+	User_tbl and User_bank_tbl will have one to one mapping
+	User_tbl and User_txn_tbl will have one to many mapping
+	
+The task is to implement a set of REST services that exposes the endpoints and allows for filtering and sorting the collection of txn records in the following ways:
+
+POST request to user/add
+create requset body to add user and its bank details.
+On success return 200 response code.
+validate no duplicate email, phone and accountNumber.
+
+POST request to /txn/add/{userId}
+withn the above request body.
+add random generated txnId.
+which stores the data and return 200 response code.
+do all validation for amount fields as it must not be less than 0.
+
+POST request to /txn/get/details
+withn the above request body, accept list of userId where if list is null fetch all user data.
+
+GET request to /txn/amount/{initial_range}/{final_range}:
+Accept request param for userId.
+returns a collection of all txns for given userId whose amount is between the initial and the final range supplied
+The response code is 200, and the response body is an user details, bank details and array of txns in the amount range provided.
+Fetch data in single sql query call.
+In case there are no txns txns return status code 400.
+ 
+GET request to /sort/amount:
+returns a collection of all txns sorted by their amount
+The response code is 200 and the response body is an array of the txns sorted in ascending order of amount.
+
+use db to store data like h2 database
+ 
